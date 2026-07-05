@@ -12,8 +12,17 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        // Planing
+        // Step 1. Create an array of doubles, and give it the size length
+        // Step 2. Use a for loop
+        // Step 3. In each number, multiplying the number with (i + 1)
+        // Step 4. Return the result
+        double[] result = new double[length];
+        for (int i = 0; i < length; i++)
+        {
+            result[i] = number * (i + 1);
+        }
+        return result;
     }
 
     /// <summary>
@@ -29,5 +38,26 @@ public static class Arrays
         // Remember: Using comments in your program, write down your process for solving this problem
         // step by step before you write the code. The plan should be clear enough that it could
         // be implemented by another person.
+        // Planing
+        // Step 1. Create a new list of integers, and give it the size data.Count
+        // Step 2. Use a for loop
+        // Step 3. if the index is less than amount, add the data at index to new list
+        //         if it is not, add the data at index (i - amount) to new list
+        // Step 4. Clear data
+        // Step 5. Add the new list to data
+        List<int> result = new List<int>(new int[data.Count]);
+        for (int i = 0; i < data.Count; i++)
+        {
+            if (i < amount)
+            {
+                result[i] = data[data.Count - amount + i];
+            }
+            else
+            {
+                result[i] = data[i - amount];
+            }
+        }
+        data.Clear();
+        data.AddRange(result);
     }
 }
