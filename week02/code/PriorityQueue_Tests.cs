@@ -19,7 +19,6 @@ public class PriorityQueueTests
 
         Assert.AreEqual("B", priorityQueue.Dequeue());
     }
-
     [TestMethod]
     // Scenario: Add A (3), B (3)
     // Expected Result: A
