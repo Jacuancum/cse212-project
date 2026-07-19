@@ -22,7 +22,21 @@ public static class SetsAndMaps
     public static string[] FindPairs(string[] words)
     {
         // TODO Problem 1 - ADD YOUR CODE HERE
-        return [];
+        HashSet<string> wordSet = new HashSet<string>(words);
+        List<string> pairs = new List<string>();
+        foreach (var word in words)
+        {
+            string reversed = word[1].ToString() + word[0];
+            if (word[0] != word[1])
+            {
+                if (wordSet.Contains(reversed))
+                {
+                    pairs.Add(word + " & " + reversed);
+                    wordSet.Remove(word);
+                }
+            }
+        }
+        return pairs.ToArray();
     }
 
     /// <summary>
@@ -43,6 +57,15 @@ public static class SetsAndMaps
         {
             var fields = line.Split(",");
             // TODO Problem 2 - ADD YOUR CODE HERE
+            string degree = fields[3];
+            if (degrees.ContainsKey(degree))
+            {
+                degrees[degree]++;
+            }
+            else
+            {
+                degrees[degree] = 1;
+            }
         }
 
         return degrees;
@@ -67,7 +90,42 @@ public static class SetsAndMaps
     public static bool IsAnagram(string word1, string word2)
     {
         // TODO Problem 3 - ADD YOUR CODE HERE
-        return false;
+        word1 = word1.ToLower();
+        word2 = word2.ToLower();
+        word1 = word1.Replace(" ", "");
+        word2 = word2.Replace(" ", "");
+        if (word1.Length != word2.Length)
+        {
+            return false;
+        }
+
+        Dictionary<char, int> counts = new Dictionary<char, int>();
+        foreach (var letter in word1)
+        {
+            if (counts.ContainsKey(letter))
+            {
+                counts[letter]++;
+            }
+            else
+            {
+                counts[letter] = 1;
+            }
+        }
+
+        foreach (var letter in word2)
+        {
+            if (!counts.ContainsKey(letter))
+            {
+                return false;
+            }
+            counts[letter]--;
+            if (counts[letter] == 0)
+            {
+                counts.Remove(letter);
+            }
+        }
+
+        return counts.Count == 0;
     }
 
     /// <summary>
